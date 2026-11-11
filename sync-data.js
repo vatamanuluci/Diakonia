@@ -89,6 +89,8 @@ const sheets = sheetEntries.map(sheet => {
         value = type === 's' ? (shared[Number(raw)] ?? '') : type === 'b' ? (raw === '1' ? 'TRUE' : 'FALSE') : decodeXml(raw);
       }
       if (!value) continue;
+      // Keep the individual compensation note out of the website export.
+      if (sheet.name === 'Departamentele bisericii' && /majorare\s+salar/i.test(value)) continue;
       const styleIndex = Number(cellAttrs.s || 0);
       const fillIndex = styleFills[styleIndex] || 0;
       cells.push({ column, value: String(value), fill: fills[fillIndex] || '' });

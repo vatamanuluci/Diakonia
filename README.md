@@ -1,15 +1,13 @@
-# Diakonia · Datele bisericii
+# Diakonia — dashboardul bisericii
 
-Dashboard static în limba română, pregătit pentru Netlify.
+Dashboard static în limba română, publicat automat cu GitHub Pages.
 
-## Publicare
+## Publicare automată
 
-- Public directory: `dist`
-- Build command: none
-- Entry page: `dist/index.html`
+Workflow-ul din `.github/workflows/pages.yml` publică automat conținutul din `dist/` după fiecare push pe `main`. Pentru prima publicare, activează GitHub Pages din **Settings → Pages → Build and deployment → Source: GitHub Actions**. Linkul site-ului apare în setările Pages și în rezultatul workflow-ului.
 
-Conectează repository-ul Git la Netlify și selectează setările de mai sus. Pagina încarcă `dist/data.json` pentru listele și indicatorii detaliați. Fișierul conține date personale și este exclus din Git; versiunea locală funcționează când fișierul este prezent. Nu publica un export complet pe Netlify fără aprobarea explicită a destinației și a categoriilor de date.
+## Date
 
-## Sursa metricilor
+`dist/data.json` include exportul tuturor foilor din `Diakonia.xlsx` și este consumat de dashboard. Actualizează workbook-ul, rulează `node sync-data.js`, apoi include modificarea `dist/data.json` în commit și push. Fișierul Excel original rămâne exclus din Git.
 
-Exportul local include foile din `Diakonia.xlsx`, cu datele de identificare și contact păstrate pentru dashboardul localhost. Fișierul Excel sursă nu este inclus în repository.
+**Atenție:** GitHub Pages este public pe internet, chiar dacă repository-ul este privat. Datele din `dist/data.json` pot fi citite și descărcate de oricine are acces la site. Nu include date pe care biserica nu dorește să le publice.
